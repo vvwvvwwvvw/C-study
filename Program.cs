@@ -3,39 +3,32 @@ using System.Collections;
 
 namespace ConsoleApp1
 {
-    public class MyList
-    {
-        private int[] data = { 1, 2, 3, 4, 5 };
-
-        public IEnumerator GetEnumerator()
-        {
-            int i = 0;
-            while (i < data.Length)
-            {
-
-                yield return data[i];
-                i++;
-            }
-        }
+   
     }
     class Program
     {
+        enum City
+        {
+            Seoul,   // 0
+            Daejun,  // 1
+            Busan = 5,  // 5
+            Jeju = 10   // 10
+        }
+
         static void Main(string[] args)
         {
-            //(1) foreach 사용 하여 Iteration
-            var list = new MyList();
+            City myCity;
 
-            foreach (var item in list)
-            { 
-                Console.WriteLine(item);
+            // enum 타입에 값을 대입하는 방법
+            myCity = City.Seoul;
+
+            // enum을 int로 변환(Casting)하는 방법. 
+            // (int)를 앞에 지정.
+            int cityValue = (int)myCity;
+
+            if (myCity == City.Seoul) // enum 값을 비교하는 방법
+            {
+                Console.WriteLine("Welcome to Seoul");
             }
-
-            // (2) 수동 Iteration
-            IEnumerator it = list.GetEnumerator();
-            it.MoveNext();
-            Console.WriteLine(it.Current);
-            it.MoveNext();
-            Console.WriteLine(it.Current);
         }
     }
-}
